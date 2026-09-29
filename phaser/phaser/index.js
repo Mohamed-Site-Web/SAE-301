@@ -8,10 +8,10 @@ import accueil from "./js/accueil.js"; // écran titre
 import selection from "./js/selection.js"; // choix du mini-jeu
 import menu from "./js/menu.js"; // solo ou duo
 import choix from "./js/choix.js"; // choix des persos
-import chute from "./js/chute.js"; // mini-jeu Music Fall
-import piano from "./js/piano.js"; // mini-jeu Piano Time
-import memoire from "./js/memoire.js"; // mini-jeu Memory Song
-import attrape from "./js/attrape.js"; // mini-jeu Note Catcher
+import music_fall from "./js/music_fall.js"; // mini-jeu Music Fall
+import piano_time from "./js/piano_time.js"; // mini-jeu piano_time Time
+import memory_song from "./js/memory_song.js"; // mini-jeu Memory Song
+import note_catcher from "./js/note_catcher.js"; // mini-jeu Note Catcher
 import resultats from "./js/resultats.js"; // scores, gagnant et records
 
 // configuration générale du jeu
@@ -24,9 +24,9 @@ var config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
-  // pas de moteur physique : les chutes et les rebonds des notes sont
-  // calculés à la main (voir chute.js et attrape.js)
-  scene: [chargement, accueil, selection, menu, choix, chute, piano, memoire, attrape, resultats],
+  // pas de moteur physique : les music_falls et les rebonds des notes sont
+  // calculés à la main (voir music_fall.js et note_catcher.js)
+  scene: [chargement, accueil, selection, menu, choix, music_fall, piano_time, memory_song, note_catcher, resultats],
   baseURL: window.location.pathname.replace(/\/[^/]*$/, "")
 };
 

@@ -26,7 +26,7 @@ export const JEUX = [
       "Appuie sur A pour tamponner ta note sur la partition, au plus près\n" +
       "de la ligne dorée : 0 cm = parfait ! Si tu la dépasses : raté (60 cm).\n" +
       "3 essais : le plus petit total gagne.",
-    scene: "chute",
+    scene: "music_fall",
     fond: "img_fond_scene",
     choixPersos: false,
     image: "img_renard",
@@ -41,22 +41,22 @@ export const JEUX = [
     croissant: true
   },
   {
-    cle: "piano_time",
-    titre: "PIANO TIME",
-    slogan: "Joue la mélodie sur le piano géant !",
-    description: "Joue la mélodie\nen rythme sur\nle piano géant !",
+    cle: "piano_time_time",
+    titre: "piano_time TIME",
+    slogan: "Joue la mélodie sur le piano_time géant !",
+    description: "Joue la mélodie\nen rythme sur\nle piano_time géant !",
     regles:
-      "Les notes descendent vers la zone dorée de ton piano.\n" +
+      "Les notes descendent vers la zone dorée de ton piano_time.\n" +
       "Appuie sur A, B ou C quand une note est dans la zone :\n" +
       "chaque réussite accélère le tempo, le combo multiplie tes points.\n" +
       "3 notes ratées ou fausses notes : c'est fini !",
-    scene: "piano",
+    scene: "piano_time",
     fond: "img_fond_scene",
     choixPersos: true,
     image: "img_figaro",
     echelleImage: 0.8,
     decor: DECOR_OPERA,
-    cleRecords: "piano_time_records",
+    cleRecords: "piano_time_time_records",
     unite: "pts",
     croissant: false
   },
@@ -70,7 +70,7 @@ export const JEUX = [
       "Rejoue-la avec les boutons A B C (en haut) et D E F (en bas).\n" +
       "À chaque manche, la mélodie a une note de plus !\n" +
       "Une erreur = une chance en moins. 3 chances.",
-    scene: "memoire",
+    scene: "memory_song",
     fond: "img_fond_opera",
     choixPersos: true,
     image: "img_saxo",
@@ -83,14 +83,14 @@ export const JEUX = [
   {
     cle: "note_catcher",
     titre: "NOTE CATCHER",
-    slogan: "Attrape les notes qui tombent du ciel avec ton livre !",
-    description: "Attrape les notes\nqui tombent du ciel\navec ton livre !",
+    slogan: "note_catcher les notes qui tombent du ciel avec ton livre !",
+    description: "note_catcher les notes\nqui tombent du ciel\navec ton livre !",
     regles:
       "Joystick gauche / droite pour te déplacer (A maintenu pour courir).\n" +
-      "Attrape les notes dans ton livre ouvert : chacune joue la mélodie !\n" +
+      "note_catcher les notes dans ton livre ouvert : chacune joue la mélodie !\n" +
       "Les portées volantes font dévier les notes... et évite les fausses notes.\n" +
       "60 secondes : fais le plus gros score possible !",
-    scene: "attrape",
+    scene: "note_catcher",
     fond: "img_fond_ville",
     choixPersos: true,
     image: "img_carmen",
@@ -102,7 +102,7 @@ export const JEUX = [
   }
 ];
 
-// les infos d'un mini-jeu à partir de sa clé ("piano_time"...)
+// les infos d'un mini-jeu à partir de sa clé ("piano_time_time"...)
 export function infosJeu(cle) {
   return JEUX.find((jeu) => jeu.cle == cle);
 }

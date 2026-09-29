@@ -46,8 +46,8 @@ function bip(ctx, freq, debut, duree, forme, volume, dest) {
 // INSTRUMENTS (options : pan, retard en secondes, duree, volume)
 // ---------------------------------------------------------------------------
 
-// piano (Piano Time) : une fondamentale + des harmoniques qui s'éteignent plus vite
-export function jouerPiano(scene, n, options) {
+// piano_time (piano_time Time) : une fondamentale + des harmoniques qui s'éteignent plus vite
+export function jouerpiano_time(scene, n, options) {
   var ctx = contexte(scene);
   if (!ctx) return;
   var o = options || {};
@@ -127,7 +127,7 @@ function jouerOrgue(scene, n, options) {
 
 // petit air joué quand on choisit un perso (chaque perso a le sien)
 export function jouerMotif(scene, perso) {
-  var instrument = perso.cle == "maestro" ? jouerOrgue : perso.cle == "diva" ? jouerCelesta : jouerPiano;
+  var instrument = perso.cle == "maestro" ? jouerOrgue : perso.cle == "diva" ? jouerCelesta : jouerpiano_time;
   perso.motif.forEach((n, i) => instrument(scene, n, { retard: i * 0.11, duree: 0.13, volume: 0.9 }));
 }
 
@@ -171,7 +171,7 @@ export function jouerSon(scene, nom, pan) {
     [67, 66, 65].forEach((n, i) => bip(ctx, midi(n - 12), t + i * 0.3, 0.28, "sawtooth", 0.07, dest));
     var dernier = bip(ctx, midi(52), t + 0.9, 0.9, "sawtooth", 0.07, dest);
     dernier.frequency.linearRampToValueAtTime(midi(50), t + 1.8);
-  } else if (nom == "attrape") {
+  } else if (nom == "note_catcher") {
     bip(ctx, 1200, t, 0.05, "sine", 0.06, dest);
   } else if (nom == "bonus") {
     [79, 83, 86, 91].forEach((n, i) => bip(ctx, midi(n), t + i * 0.06, 0.2, "triangle", 0.09, dest));
@@ -193,7 +193,7 @@ export function jouerTampon(scene, cm) {
   bip(ctx, midi(hauteur), t + 0.05, 0.35, "triangle", 0.18);
 }
 
-// Music Fall : sifflement qui descend pendant la chute (comme dans les dessins
+// Music Fall : sifflement qui descend pendant la music_fall (comme dans les dessins
 // animés). Il faut pouvoir l'arrêter au moment du tampon, donc on renvoie un objet.
 export function sifflet(scene, duree) {
   var ctx = contexte(scene);

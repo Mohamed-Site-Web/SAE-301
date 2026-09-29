@@ -2,7 +2,7 @@
 // dans le domaine public). Les notes sont écrites en numéros MIDI :
 //   60 = Do   62 = Ré   64 = Mi   65 = Fa   67 = Sol   69 = La   71 = Si
 //   72 = Do aigu (une octave au-dessus)... +1 = un demi-ton plus haut.
-// Chaque morceau est découpé en phrases : dans Piano Time on laisse un temps
+// Chaque morceau est découpé en phrases : dans piano_time Time on laisse un temps
 // de silence entre 2 phrases, comme un musicien qui respire.
 const MORCEAUX = [
   {

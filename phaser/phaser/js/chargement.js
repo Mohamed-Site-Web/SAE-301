@@ -37,7 +37,7 @@ export default class chargement extends Phaser.Scene {
     });
 
     // Music Fall : persos du pack Sunny Land
-    // renard : repos 0-3, course 4-9, saut 10, chute 11, blessé 12-13
+    // renard : repos 0-3, course 4-9, saut 10, music_fall 11, blessé 12-13
     this.load.spritesheet("img_renard", "./assets/images/renard.png", { frameWidth: 33, frameHeight: 32 });
     this.load.spritesheet("img_renard2", "./assets/images/renard_j2.png", { frameWidth: 33, frameHeight: 32 });
     this.load.spritesheet("img_grenouille", "./assets/images/grenouille.png", { frameWidth: 35, frameHeight: 32 });

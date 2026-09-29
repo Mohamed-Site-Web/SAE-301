@@ -17,7 +17,7 @@ export function creerTextures(scene) {
   feuille(scene);
   note(scene);
   rideau(scene);
-  // Piano Time
+  // piano_time Time
   tuile(scene);
   // Memory Song
   projecteur(scene);
@@ -249,7 +249,7 @@ function rideau(scene) {
 }
 
 // ---------------------------------------------------------------------------
-// PIANO TIME
+// piano_time TIME
 // ---------------------------------------------------------------------------
 
 // la tuile noire qui descend vers la zone dorée

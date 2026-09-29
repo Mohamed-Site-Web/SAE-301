@@ -4,7 +4,7 @@
 //   couleur : couleur de son texte     teinte : couleur de ses effets
 //   defaite : sa réaction quand il perd (voir interface.js)
 
-// Les 4 persos du document "Idées" (des archétypes d'opéra), pour Piano Time,
+// Les 4 persos du document "Idées" (des archétypes d'opéra), pour piano_time_time Time,
 // Memory Song et Note Catcher. "motif" = son petit air quand on le choisit.
 export const PERSOS = [
   {
@@ -63,7 +63,7 @@ export const PERSOS = [
 
 // Music Fall se joue avec Foxy (J1) et Foxy bleu (J2), du pack Sunny Land.
 // Leurs images sont des spritesheets : "anim" = leur animation au repos,
-// "imageChute" = l'image quand ils tombent, "pied" = hauteur des pattes dans
+// "imagemusic_fall" = l'image quand ils tombent, "pied" = hauteur des pattes dans
 // l'image (0 = en haut, 1 = en bas) pour qu'elles tombent pile sur la ligne.
 const RENARDS = [
   {
@@ -73,9 +73,9 @@ const RENARDS = [
     tete: "img_tete_renard",
     echelle: 4.5,
     anim: "anim_renard_repos",
-    imageChute: 11,
+    imagemusic_fall: 11,
     piedRepos: 32 / 32,
-    piedChute: 29 / 32, // 3 lignes vides sous l'image de chute
+    piedmusic_fall: 29 / 32, // 3 lignes vides sous l'image de music_fall
     couleur: "#ff9a3c",
     teinte: 0xd9622b, // c'est aussi la couleur du tampon de sa note
     defaite: "boude"
@@ -87,9 +87,9 @@ const RENARDS = [
     tete: "img_tete_renard2",
     echelle: 4.5,
     anim: "anim_renard2_repos",
-    imageChute: 11,
+    imagemusic_fall: 11,
     piedRepos: 32 / 32,
-    piedChute: 29 / 32,
+    piedmusic_fall: 29 / 32,
     couleur: "#5fc8ff",
     teinte: 0x2b7fd9,
     defaite: "boude"
