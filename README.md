@@ -18,5 +18,4 @@ Etape 7 : Enfin cliquer sur le bouton qui à remplacer validation
 
 Etape 8 : GG vous avez reussi à réaliser un tuto simple !!!!
 
-J'ajoute le template
 
