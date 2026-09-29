@@ -6,7 +6,7 @@ export const POLICE = "Arial Black";
 const ENCRE = "#1b1030";
 export const OR = "#ffd23f";
 
-// gros texte avec un contour sombre (lisible sur n'importe quel fond)
+// gros texte avec un contour sombre
 export function style(taille, couleur, contour) {
   return {
     fontFamily: POLICE,

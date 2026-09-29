@@ -84,10 +84,6 @@ export default class music_fall extends Phaser.Scene {
       })
       .setOrigin(0.5);
 
-    // halo qui clignote doucement sur la ligne dorée
-    var halo = this.add.rectangle(645, Y_LIGNE, 790, 10, 0xffd23f, 0.35);
-    this.tweens.add({ targets: halo, alpha: 0.05, duration: 600, yoyo: true, repeat: -1 });
-
     // en duo : séparation en pointillés entre les 2 couloirs
     if (!this.solo) {
       var sep = this.add.graphics();
@@ -123,7 +119,6 @@ export default class music_fall extends Phaser.Scene {
   creerRideau() {
     // rideau d'opéra qui cache la fin de la music_fall (il laisse voir les 10 derniers cm)
     this.rideau = this.add.image(640, 230, "tx_rideau").setOrigin(0.5, 0).setDepth(PROF.rideau);
-    this.tweens.add({ targets: this.rideau, scaleX: 1.01, duration: 1200, yoyo: true, repeat: -1, ease: "Sine.easeInOut" });
   }
 
   // ---------------------------------------------------------------------------
@@ -133,7 +128,6 @@ export default class music_fall extends Phaser.Scene {
     var x = this.solo ? X_COULOIR_SOLO : X_COULOIRS[i];
     var decalageNote = i == 0 ? 40 : -40; // la note est à coté du perso
 
-    var feuille = this.add.image(x, Y_DEPART - 4, "tx_feuille").setOrigin(0.5, 0).setDepth(PROF.feuille);
     // la note du perso, de sa couleur. Le bas de l'image (la tete de la note)
     // est au niveau des pattes : c'est ce point qu'on mesure
     var note = this.add
@@ -157,7 +151,6 @@ export default class music_fall extends Phaser.Scene {
       x: x,
       sprite: sprite,
       note: note,
-      feuille: feuille,
       decalageNote: decalageNote,
       touches: this.touches[i],
       etat: "attente", // attente -> music_fall -> tamponne ou rate
@@ -263,7 +256,6 @@ export default class music_fall extends Phaser.Scene {
           color: "#2b1f5c"
         })
         .setOrigin(0.5);
-      this.tweens.add({ targets: [bouton, texteBouton], scale: 1.06, duration: 450, yoyo: true, repeat: -1 });
       elements.push(bouton, texteBouton);
     }
 
@@ -328,15 +320,6 @@ export default class music_fall extends Phaser.Scene {
       j.sprite.setFrame(j.perso.imagemusic_fall);
       j.sprite.setOrigin(0.5, j.perso.piedmusic_fall);
       // la feuille s'envole en tournant
-      this.tweens.add({
-        targets: j.feuille,
-        y: j.feuille.y + 650,
-        x: j.feuille.x + Phaser.Math.Between(-80, 80),
-        angle: Phaser.Math.Between(-70, 70),
-        alpha: 0,
-        duration: 1500,
-        ease: "Quad.easeIn"
-      });
     });
   }
 
@@ -592,7 +575,6 @@ export default class music_fall extends Phaser.Scene {
       })
       .setOrigin(0.5)
       .setDepth(PROF.texte);
-    this.tweens.add({ targets: suite, alpha: 0.4, duration: 500, yoyo: true, repeat: -1 });
 
     // on vide les appuis faits pendant la music_fall (en solo personne ne lit les
     // touches de J2, donc un vieil appui pouvait faire passer la manche direct)

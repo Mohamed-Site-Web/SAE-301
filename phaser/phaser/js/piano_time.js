@@ -427,7 +427,6 @@ export default class piano_time extends Phaser.Scene {
     this.tweens.killTweensOf(j.sprite);
     j.sprite.setScale(ECHELLE_PERSO).setAngle(0).setY(Y_PIEDS);
     this.tweens.add({ targets: j.sprite, x: this.xCouloir(j, c), duration: 90, ease: "Quad.easeOut" });
-    this.tweens.add({ targets: j.sprite, y: Y_PIEDS - 24, duration: 80, yoyo: true, ease: "Quad.easeOut" });
     // il s'écrase un peu en retombant sur la touche
     this.tweens.add({
       targets: j.sprite,
