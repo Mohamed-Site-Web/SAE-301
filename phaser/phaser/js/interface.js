@@ -2,7 +2,7 @@
 // panneau de présentation avant le jeu, médaillon avec la tete du perso,
 // textes qui s'envolent, réactions des persos à la fin...
 
-export const POLICE = '"Arial Black", Arial';
+export const POLICE = "Arial Black";
 const ENCRE = "#1b1030";
 export const OR = "#ffd23f";
 

@@ -1,4 +1,8 @@
-// chargement des librairies
+// Music Party : 4 mini-jeux musicaux pour la borne d'arcade, en solo ou à deux.
+// Point de départ du jeu (comme dans le template) : on importe les scènes
+// et on lance le jeu.
+
+// chargement des scènes (une scène = un fichier du dossier js)
 import chargement from "./js/chargement.js"; // charge les images et la musique
 import accueil from "./js/accueil.js"; // écran titre
 import selection from "./js/selection.js"; // choix du mini-jeu
@@ -12,31 +16,19 @@ import resultats from "./js/resultats.js"; // scores, gagnant et records
 
 // configuration générale du jeu
 var config = {
-  width: 1280, // largeur en pixels
+  type: Phaser.AUTO,
+  width: 1280, // largeur en pixels (écran de la borne)
   height: 720, // hauteur en pixels
-   type: Phaser.AUTO,
+  backgroundColor: "#140a24",
   scale: {
     mode: Phaser.Scale.FIT,
-    parent: 'game-container',
-    autoCenter: Phaser.Scale.CENTER_BOTH,
-  
+    autoCenter: Phaser.Scale.CENTER_BOTH
   },
-  physics: {
-    // définition des parametres physiques
-    default: "arcade", // mode arcade : le plus simple : des rectangles pour gérer les collisions. Pas de pentes
-    arcade: {
-      // parametres du mode arcade
-      gravity: {
-        y: 300 // gravité verticale : acceleration ddes corps en pixels par seconde
-      },
-      debug: true // permet de voir les hitbox et les vecteurs d'acceleration quand mis à true
-    }
-  },
-  scene: [selection, niveau1, niveau2, niveau3],
-  baseURL: window.location.pathname.replace(/\/[^/]*$/, '')
+  // pas de moteur physique : les chutes et les rebonds des notes sont
+  // calculés à la main (voir chute.js et attrape.js)
+  scene: [chargement, accueil, selection, menu, choix, chute, piano, memoire, attrape, resultats],
+  baseURL: window.location.pathname.replace(/\/[^/]*$/, "")
 };
 
-
-// création et lancement du jeu
+// création et lancement du jeu (la 1re scène de la liste démarre toute seule)
 var game = new Phaser.Game(config);
-game.scene.start("selection");

@@ -15,7 +15,6 @@ export default class accueil extends Phaser.Scene {
     this.add.image(0, 0, "img_fond_accueil").setOrigin(0);
 
     var texte = this.add.text(640, 655, "Appuie sur A pour commencer", style(34, OR, 8)).setOrigin(0.5);
-    this.tweens.add({ targets: texte, alpha: 0.3, duration: 600, yoyo: true, repeat: -1 });  // A ENLEVER (Animation)
     lancerMusique(this);
     this.cameras.main.fadeIn(400);
   }
