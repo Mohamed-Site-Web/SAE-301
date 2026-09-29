@@ -1,8 +1,14 @@
 // chargement des librairies
-import selection from "./js/selection.js";
-import niveau1 from "./js/niveau1.js";
-import niveau2 from "./js/niveau2.js";
-import niveau3 from "./js/niveau3.js";
+import chargement from "./js/chargement.js"; // charge les images et la musique
+import accueil from "./js/accueil.js"; // écran titre
+import selection from "./js/selection.js"; // choix du mini-jeu
+import menu from "./js/menu.js"; // solo ou duo
+import choix from "./js/choix.js"; // choix des persos
+import chute from "./js/chute.js"; // mini-jeu Music Fall
+import piano from "./js/piano.js"; // mini-jeu Piano Time
+import memoire from "./js/memoire.js"; // mini-jeu Memory Song
+import attrape from "./js/attrape.js"; // mini-jeu Note Catcher
+import resultats from "./js/resultats.js"; // scores, gagnant et records
 
 // configuration générale du jeu
 var config = {
