@@ -20,3 +20,8 @@ Etape 8 : GG vous avez reussi à réaliser un tuto simple !!!!
 
 
 il faut supprimer anim tremblement sur music fall quand on fini la manche du jeu
+
+///////////////////////////
+
+git restore . 
+= sert a annuler les dernieres modifs avant commit sur le terminal
