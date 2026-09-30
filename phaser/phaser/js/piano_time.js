@@ -4,61 +4,44 @@ import { participants } from "./persos.js";
 import { infosJeu } from "./jeux.js";
 import { choisirMorceau } from "./repertoire.js";
 import { afficherRecordEnJeu } from "./records.js";
-import {
-  style,
-  styleTexte,
-  panneauPresentation,
-  fermerPanneau,
-  creerMedaillon,
-  creerVies,
-  casserVie,
-  texteFlottant,
-  annonce,
-  partieTerminee,
-  OR
-} from "./interface.js";
+import { style, styleTexte, panneauPresentation, fermerPanneau, creerMedaillon, creerVies, casserVie, texteFlottant, annonce, partieTerminee, OR } from "./interface.js";
 
-const JEU = infosJeu("piano_time_time"); // titre, fond, tableau des records...
+////////////////////////////////// Réglages du mini-jeu ///////////////////////////////////////////////
 
-// ---------------------------------------------------------------------------
-// Réglages du mini-jeu
-// ---------------------------------------------------------------------------
-const X_piano_timeS_SOLO = [640]; // en solo, un seul piano_time au milieu
-const X_piano_timeS_DUO = [330, 950]; // en duo, un piano_time de chaque coté
-const LARGEUR_COULOIR = 100; // 3 couloirs par piano_time : boutons A, B, C
-const Y_HAUT = 150; // les notes apparaissent en haut de la piste
-const Y_ZONE = 520; // centre de la zone dorée (la "zone de sélection")
-const HAUTEUR_ZONE = 64;
-const Y_CLAVIER = 580; // haut des touches du piano_time géant
-const Y_PIEDS = 694; // les persos sont debout sur les touches
-const ECHELLE_PERSO = 0.5; // les images des persos sont affichées 2 fois plus petites
-const PX_PAR_TEMPS = 150; // écart vertical entre 2 temps de la partition
-const TEMPO_DEPART = 84; // en battements par minute (BPM)
-const GAIN_TEMPO = 2; // +2 BPM à chaque note réussie : ça accélère !
-const FENETRE_BIEN = 46; // écart max (en px) entre la note et le centre de la zone
-const FENETRE_PARFAIT = 15;
-const FENETRE_TROP_TOT = 110; // un peu trop tôt : on perd juste le combo
+const JEU = infosJeu("piano_time_time"); //  Infos du mini-jeu récupérées dans jeux.js
+
+const X_piano_timeS_SOLO = [640];         // Mode SOLO = un piano au centre 
+const X_piano_timeS_DUO = [330, 950];     // Mode DUO = un piano de chaque coté
+
+const LARGEUR_COULOIR = 100;              // 3 couloirs par piano : boutons A, B, C (K, L, M sur pc)
+const Y_HAUT = 150;                       // Les notes spawn en haut de chaque couloir
+const Y_ZONE = 520;                       // Position de la zone de sélection
+const HAUTEUR_ZONE = 64;                  // Epaisseur de la zone de selection 
+
+const Y_CLAVIER = 580;                    // Hauteur du haut des touches du piano
+const Y_PIEDS = 694;                      // Les persos sont sur les touches
+
+const ECHELLE_PERSO = 0.5;                // Taille des persos : 0.5
+
+// Vitesse du jeu //
+const PX_PAR_TEMPS = 150;                 // Ecart vertical entre 2 temps de la partition
+const TEMPO_DEPART = 84;                  // Tempo au début de la partie (vitesse)
+const GAIN_TEMPO = 2;                     // Vitesse gagnés à chaque note réussie
+
+const FENETRE_BIEN = 46;                  // Jusqu'à 46 px d'ecart pour le bien
+const FENETRE_PARFAIT = 15;               // Jusqu'à 15 px d'ecart pour le parfait
+const FENETRE_TROP_TOT = 110;             // Si on appuie trop tot : perte du combo, mais pas de vie
+
 const VIES = 3;
-const COULEURS_COULOIRS = [0xff5a5a, 0xffa23a, 0xffe14d]; // A rouge, B orange, C jaune
+
+const COULEURS_COULOIRS = [0xff5a5a, 0xffa23a, 0xffe14d];  // Couleur de chaque couloir
 const BOUTONS_COULOIRS = [
-  ["a", "d"], // couloir de gauche : A (ou D juste en dessous)
-  ["b", "e"],
-  ["c", "f"]
+  ["a", "d"], ["b", "e"],["c", "f"]       //Bouton sur la borne pour chaque couloir 
 ];
 
-// noms des tempos en italien, comme sur une partition
-const TEMPOS = [
-  { bpm: 0, nom: "Andante" },
-  { bpm: 100, nom: "Moderato" },
-  { bpm: 120, nom: "Allegro" },
-  { bpm: 145, nom: "Vivace" },
-  { bpm: 170, nom: "Presto" },
-  { bpm: 200, nom: "Prestissimo" },
-  { bpm: 240, nom: "Furioso" }
-];
 
-// profondeur d'affichage des éléments (plus grand = devant)
-const PROF = { piste: 1, zone: 2, tuile: 4, clavier: 5, lumiere: 5.5, perso: 6, voile: 8, hud: 30 };
+// Ordre d'affichage : plus le chiffre est grand, plus l'élément est devant
+const PROF = { piste: 1, zone: 2, tuile: 3, clavier: 4, lumiere: 5, perso: 6, voile: 7, hud: 50 };
 
 // Déroulement (this.etat) :
 // presentation (panneau + bouton lancer) -> decompte (1, 2, 3, 4) -> jeu -> fin
@@ -85,7 +68,6 @@ export default class piano_time extends Phaser.Scene {
     this.joueurs = participants(this.registry).map((perso, i) => this.creerJoueur(perso, i));
 
     lancerMusique(this);
-    this.cameras.main.fadeIn(300);
     this.presenter();
   }
 
@@ -184,8 +166,7 @@ export default class piano_time extends Phaser.Scene {
     g.fillRect(gauche, Y_ZONE - HAUTEUR_ZONE / 2, largeur, HAUTEUR_ZONE);
     g.lineStyle(3, 0xe0a818);
     g.strokeRect(gauche, Y_ZONE - HAUTEUR_ZONE / 2, largeur, HAUTEUR_ZONE);
-    var halo = this.add.rectangle(j.x, Y_ZONE, largeur, HAUTEUR_ZONE, 0xffd23f, 0.3).setDepth(PROF.zone);
-    this.tweens.add({ targets: halo, alpha: 0.05, duration: 600, yoyo: true, repeat: -1 });
+    
 
     // une lumière par couloir (elle s'allume quand on appuie) + la lettre du bouton
     j.lumieres = [0, 1, 2].map((c) =>
@@ -300,14 +281,12 @@ export default class piano_time extends Phaser.Scene {
     j.texteMulti.setText(multi > 1 ? "x" + multi : "");
     j.texteCombo.setText(j.combo > 1 ? j.combo + " combos" : "");
   }
-
+  
   majTempo(j) {
-    var nom = TEMPOS.filter((t) => j.tempo >= t.bpm).pop().nom;
-    j.texteTempo.setText("♩ = " + Math.round(j.tempo) + "  " + nom);
-    // on annonce le nouveau tempo quand il change
-    if (j.nomTempo != "" && nom != j.nomTempo) texteFlottant(this, j.x, 300, nom + " !", "#ffffff", 34);
-    j.nomTempo = nom;
+    j.texteTempo.setText("♩ = " + Math.round(j.tempo));
   }
+
+
 
   // ---------------------------------------------------------------------------
   // DEROULEMENT
@@ -376,7 +355,6 @@ export default class piano_time extends Phaser.Scene {
     j.tuiles.slice().forEach((t) => {
       if (j.elimine) return; // éliminé par la tuile précédente
       t.y = Y_ZONE - (t.note.temps - j.temps) * PX_PAR_TEMPS;
-      t.setAlpha(Phaser.Math.Clamp((t.y - Y_HAUT) / 40, 0, 1)); // apparition en douceur
       if (t.y - Y_ZONE > FENETRE_BIEN) this.rater(j, t); // elle a dépassé la zone
     });
 
@@ -385,7 +363,7 @@ export default class piano_time extends Phaser.Scene {
   }
 
   creerTuile(j, note) {
-    var tuile = this.add.image(this.xCouloir(j, note.couloir), Y_HAUT, "tx_tuile").setDepth(PROF.tuile).setAlpha(0);
+    var tuile = this.add.image(this.xCouloir(j, note.couloir), Y_HAUT, "tx_tuile").setDepth(PROF.tuile);
     tuile.note = note;
     j.tuiles.push(tuile);
   }
@@ -424,18 +402,7 @@ export default class piano_time extends Phaser.Scene {
   // "personnage apparait quand on appuie sur une touche" : il saute sur la
   // touche du piano_time qu'on vient de jouer, on voit tout de suite où on a appuyé
   sauterSur(j, c) {
-    this.tweens.killTweensOf(j.sprite);
-    j.sprite.setScale(ECHELLE_PERSO).setAngle(0).setY(Y_PIEDS);
-    this.tweens.add({ targets: j.sprite, x: this.xCouloir(j, c), duration: 90, ease: "Quad.easeOut" });
-    // il s'écrase un peu en retombant sur la touche
-    this.tweens.add({
-      targets: j.sprite,
-      scaleY: ECHELLE_PERSO * 0.88,
-      scaleX: ECHELLE_PERSO * 1.1,
-      duration: 70,
-      delay: 160,
-      yoyo: true
-    });
+    j.sprite.setX(this.xCouloir(j, c));
   }
 
   eclairer(j, c) {
@@ -458,17 +425,7 @@ export default class piano_time extends Phaser.Scene {
     // 1 réussite = accélération
     j.tempo += GAIN_TEMPO;
 
-    // la tuile devient blanche, grossit et disparait
-    tuile.setTintFill(0xffffff);
-    this.tweens.add({
-      targets: tuile,
-      scale: 1.3,
-      alpha: 0,
-      y: tuile.y - 20,
-      duration: 220,
-      onComplete: () => tuile.destroy()
-    });
-    this.gerbe(tuile.x, Y_ZONE, j.perso.teinte);
+    tuile.destroy();
     texteFlottant(this, tuile.x, Y_ZONE - 48, parfait ? "PARFAIT" : "BIEN", parfait ? OR : "#ffffff", 22);
     if (j.combo % 10 == 0 && j.combo <= 30) {
       texteFlottant(this, j.x, 330, "COMBO x" + multi + " !", OR, 36);
@@ -479,24 +436,6 @@ export default class piano_time extends Phaser.Scene {
     this.verifierFin(); // en duo, le gagnant est peut-etre déjà connu
   }
 
-  // petites notes de la couleur du perso qui s'envolent
-  gerbe(x, y, couleur) {
-    for (var k = 0; k < 6; k++) {
-      var n = this.add
-        .image(x + Phaser.Math.Between(-30, 30), y, "tx_mini_note")
-        .setTint(couleur)
-        .setDepth(PROF.voile);
-      this.tweens.add({
-        targets: n,
-        x: n.x + Phaser.Math.Between(-40, 40),
-        y: y - Phaser.Math.Between(60, 130),
-        angle: Phaser.Math.Between(-60, 60),
-        alpha: 0,
-        duration: 600,
-        onComplete: () => n.destroy()
-      });
-    }
-  }
 
   tropTot(j, c) {
     j.combo = 0;
@@ -513,9 +452,8 @@ export default class piano_time extends Phaser.Scene {
   // la tuile a dépassé la zone sans etre jouée
   rater(j, tuile) {
     this.retirerTuile(j, tuile);
-    tuile.setTintFill(0xd0342c);
-    this.tweens.add({ targets: tuile, y: tuile.y + 90, alpha: 0, duration: 400, onComplete: () => tuile.destroy() });
     texteFlottant(this, tuile.x, Y_ZONE - 48, "Raté !", "#ff4d5e", 22);
+    tuile.destroy();
     this.perdreVie(j);
   }
 
@@ -525,30 +463,24 @@ export default class piano_time extends Phaser.Scene {
     j.vies--;
     casserVie(this, j.imagesVies[j.vies]);
     jouerSon(this, "couac", j.pan);
-    this.cameras.main.shake(120, 0.004);
-    // le perso trébuche
-    this.tweens.add({ targets: j.sprite, angle: j.i == 0 ? -14 : 14, duration: 90, yoyo: true, repeat: 1 });
     this.majHUD(j);
     if (j.vies <= 0) this.eliminer(j);
   }
 
   eliminer(j) {
     j.elimine = true;
-    j.tuiles.forEach((t) => this.tweens.add({ targets: t, alpha: 0, duration: 300, onComplete: () => t.destroy() }));
+    j.tuiles.forEach((t) => t.destroy());
     j.tuiles = [];
     // un voile sombre sur son piano_time + un gros tampon "ÉLIMINÉ" (ou "TERMINÉ" en solo)
     this.add
       .rectangle(j.x, (Y_HAUT - 30 + 720) / 2, 3 * LARGEUR_COULOIR + 24, 720 - Y_HAUT + 30, 0x0b0618, 0.55)
       .setDepth(PROF.voile);
-    var tampon = this.add
+    this.add
       .text(j.x, 330, this.solo ? "TERMINÉ" : "ÉLIMINÉ", style(46, "#ff4d5e", 8))
       .setOrigin(0.5)
       .setAngle(-12)
-      .setDepth(PROF.hud)
-      .setScale(3)
-      .setAlpha(0);
-    this.tweens.add({ targets: tampon, scale: 1, alpha: 1, duration: 300, ease: "Back.easeOut" });
-    this.tweens.add({ targets: j.sprite, alpha: 0.5, angle: j.i == 0 ? -90 : 90, duration: 500 });
+      .setDepth(PROF.hud);
+    j.sprite.setAlpha(0.5);
     jouerSon(this, "elimine", j.pan);
     this.verifierFin();
   }
@@ -560,7 +492,7 @@ export default class piano_time extends Phaser.Scene {
   fin() {
     this.etat = "fin";
     this.joueurs.forEach((j) => {
-      j.tuiles.forEach((t) => this.tweens.add({ targets: t, alpha: 0, duration: 300, onComplete: () => t.destroy() }));
+      j.tuiles.forEach((t) =>   t.destroy());
       j.tuiles = [];
     });
     annonce(this, "FIN DU RÉCITAL !", OR, 1700, 300);
