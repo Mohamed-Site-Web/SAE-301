@@ -15,7 +15,6 @@ export function creerTextures(scene) {
   note(scene);
   rideau(scene);
   // piano_time Time
-  tuile(scene);
   // Memory Song
   bulle(scene);
   // Note Catcher
@@ -187,19 +186,7 @@ function rideau(scene) {
 // piano_time TIME
 // ---------------------------------------------------------------------------
 
-// la tuile noire qui descend vers la zone dorée
-function tuile(scene) {
-  var g = nouveauDessin(scene);
-  g.fillStyle(0x000000, 0.25);
-  g.fillRoundedRect(3, 5, 86, 54, 10); // ombre
-  g.fillStyle(0x1d1628);
-  g.fillRoundedRect(0, 0, 86, 54, 10); // touche noire
-  g.fillStyle(0x3d3252);
-  g.fillRoundedRect(5, 3, 76, 12, 6); // reflet en haut
-  dessinerCroche(g, 33, 10, 0.3, 0xffd23f); // note dorée au milieu
-  g.generateTexture("tx_tuile", 90, 60);
-  g.destroy();
-}
+
 
 // ---------------------------------------------------------------------------
 // MEMORY SONG

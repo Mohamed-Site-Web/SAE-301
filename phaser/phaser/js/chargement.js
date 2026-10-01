@@ -43,6 +43,7 @@ export default class chargement extends Phaser.Scene {
     this.load.spritesheet("img_grenouille", "./assets/images/grenouille.png", { frameWidth: 35, frameHeight: 32 });
     this.load.image("img_tete_renard", "./assets/images/tete_renard.png");
     this.load.image("img_tete_renard2", "./assets/images/tete_renard2.png");
+    this.load.image("img_touche_note", "./assets/images/touche_note.png");
 
     // Memory Song : le saxophone et ses 6 touches (dossier "Note Memory img")
     this.load.image("img_saxo", "./assets/images/saxo.png");
