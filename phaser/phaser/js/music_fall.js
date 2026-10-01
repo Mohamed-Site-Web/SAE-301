@@ -311,8 +311,7 @@ export default class music_fall extends Phaser.Scene {
       elements.push(bouton, texteBouton);
     }
 
-    this.panneau = this.add.container(640, 390, elements).setDepth(PROFONDEUR.texte).setScale(0);
-    this.tweens.add({ targets: this.panneau, scale: 1, duration: 400, ease: "Back.easeOut" });
+this.panneau = this.add.container(640, 390, elements).setDepth(PROFONDEUR.texte);
 
     if (premierEssai) {
       this.etape = "presentation"; // on attend A (voir update)
@@ -321,19 +320,11 @@ export default class music_fall extends Phaser.Scene {
     }
   }
 
-  fermerPanneau() {
-    this.etape = "intro";
-    jouerSon(this, "valider");
-    this.tweens.add({
-      targets: this.panneau,
-      scale: 0,
-      duration: 250,
-      onComplete: () => {
-        this.panneau.destroy();
-        this.pret();
-      }
-    });
-  }
+fermerPanneau() {
+  this.etape = "intro";
+  this.panneau.destroy();
+  this.pret();
+}
 
   pret() {
     this.etape = "pret";

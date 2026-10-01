@@ -66,21 +66,13 @@ export function panneauPresentation(scene, titre, lignes) {
     .text(0, bouton.y, "▶  LANCER LE JEU  (A)", { fontFamily: POLICE, fontSize: "24px", color: "#2b1f5c" })
     .setOrigin(0.5);
 
-  var panneau = scene.add.container(640, 360, [fond, texteTitre, texte, bouton, texteBouton]).setDepth(80).setScale(0);
-  scene.tweens.add({ targets: panneau, scale: 1, duration: 400, ease: "Back.easeOut" });
-  return panneau;
+  var panneau = scene.add.container(640, 360, [fond, texteTitre, texte, bouton, texteBouton]).setDepth(80);
+return panneau;
 }
 
 export function fermerPanneau(scene, panneau, suite) {
-  scene.tweens.add({
-    targets: panneau,
-    scale: 0,
-    duration: 250,
-    onComplete: () => {
-      panneau.destroy();
-      suite();
-    }
-  });
+  panneau.destroy();
+  suite();
 }
 
 // ---------------------------------------------------------------------------
