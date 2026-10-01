@@ -1,4 +1,4 @@
-import { creerTouches, unJoueurAppuie, oublierAppuis } from "./controles.js";
+import { creerTouches, unJoueurAppuie } from "./controles.js";
 import { jouerSon, lancerMusique } from "./sons.js";
 import { participants } from "./persos.js";
 import { infosJeu } from "./jeux.js";
@@ -13,8 +13,7 @@ import {
 
 // Écran des résultats, commun aux 4 mini-jeux.
 // On reçoit { scores: [score J1, score J2], stats: [{ titre, valeurs }] }
-//  - en solo : le score, les stats et le tableau des meilleurs scores
-//    (on tape ses initiales si on y entre) ;
+//  - en solo : le score et les stats ;
 //  - en duo : le gagnant et les scores des 2 joueurs.
 export default class resultats extends Phaser.Scene {
   constructor() {
@@ -30,7 +29,6 @@ export default class resultats extends Phaser.Scene {
     this.touches = creerTouches(this);
     this.jeu = infosJeu(this.registry.get("jeu"));
     this.choixFait = false;
-    this.enSaisie = false;
     var joueurs = participants(this.registry);
 
     fondAssombri(this, this.jeu.fond, 0.6);
@@ -60,8 +58,7 @@ export default class resultats extends Phaser.Scene {
   creerSolo(j) {
     this.add.text(640, 60, "Fin de la partie", style(52, OR, 10)).setOrigin(0.5);
 
-    var sprite = this.afficherPerso(j, 170);
-    respirer(this, sprite);
+    this.afficherPerso(j, 170);
 
     // le score et les stats de la partie
     var hauteur = 230 + this.stats.length * 38;

@@ -4,7 +4,6 @@
 //   choixPersos : false = pas d'écran de choix des persos (Music Fall : les Foxy)
 //   image       : image de la carte sur l'écran de sélection
 //   decor       : persos affichés sur les cotés du menu
-//   cleRecords  : tableau des meilleurs scores (solo)
 //   croissant   : true = le plus PETIT score est le meilleur (Music Fall, en cm)
 
 // les 4 persos d'opéra sur les cotés du menu
@@ -36,7 +35,6 @@ export const JEUX = [
       { texture: "img_grenouille", x: 1060, echelle: 4.5, anim: "anim_grenouille_repos" },
       { texture: "img_renard2", x: 1180, echelle: 4.5, anim: "anim_renard2_repos" }
     ],
-    cleRecords: "music_fall_records",
     unite: "cm",
     croissant: true
   },
@@ -56,7 +54,6 @@ export const JEUX = [
     image: "img_figaro",
     echelleImage: 0.8,
     decor: DECOR_OPERA,
-    cleRecords: "piano_time_time_records",
     unite: "pts",
     croissant: false
   },
@@ -76,7 +73,6 @@ export const JEUX = [
     image: "img_saxo",
     echelleImage: 0.34,
     decor: DECOR_OPERA,
-    cleRecords: "memory_song_records",
     unite: "pts",
     croissant: false
   },
@@ -96,7 +92,6 @@ export const JEUX = [
     image: "img_carmen",
     echelleImage: 0.85,
     decor: DECOR_OPERA,
-    cleRecords: "note_catcher_records",
     unite: "pts",
     croissant: false
   }
