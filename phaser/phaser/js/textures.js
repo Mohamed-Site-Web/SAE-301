@@ -17,7 +17,6 @@ export function creerTextures(scene) {
   // piano_time Time
   tuile(scene);
   // Memory Song
-  projecteur(scene);
   bulle(scene);
   // Note Catcher
   croche(scene);
@@ -206,27 +205,7 @@ function tuile(scene) {
 // MEMORY SONG
 // ---------------------------------------------------------------------------
 
-// faisceau du projecteur qui éclaire le saxophone pendant qu'il joue
-// (des trapèzes de plus en plus étroits = plus lumineux au centre)
-function projecteur(scene) {
-  var g = nouveauDessin(scene);
-  for (var k = 0; k < 6; k++) {
-    var haut = 50 - k * 7;
-    var bas = 360 - k * 50;
-    g.fillStyle(0xfff3c4, 0.05);
-    g.fillPoints(
-      [
-        { x: 360 - haut, y: 0 },
-        { x: 360 + haut, y: 0 },
-        { x: 360 + bas, y: 560 },
-        { x: 360 - bas, y: 560 }
-      ],
-      true
-    );
-  }
-  g.generateTexture("tx_projecteur", 720, 560);
-  g.destroy();
-}
+
 
 // bulle ronde (on écrit la lettre du bouton dedans)
 function bulle(scene) {

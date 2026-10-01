@@ -53,7 +53,7 @@ const Y_PIEDS = 592;
 const Y_PROGRES = 632; // les ronds qui montrent où on en est dans la mélodie
 const Y_CHRONO = 662;
 
-const PROF = { saxo: 2, halo: 3, touche: 4, lettre: 5, projecteur: 6, perso: 7, hud: 30 };
+const PROF = { saxo: 2, halo: 3, touche: 4, lettre: 5, perso: 6, hud: 30 };
 
 // Déroulement (this.etat) :
 // presentation -> demo (le saxo joue) -> saisie (les joueurs rejouent)
@@ -122,13 +122,7 @@ export default class memory_song extends Phaser.Scene {
           .setDepth(PROF.lettre)
       };
     });
-    // le projecteur qui éclaire le saxo quand il joue
-    this.projecteur = this.add
-      .image(640, 0, "tx_projecteur")
-      .setOrigin(0.5, 0)
-      .setBlendMode(Phaser.BlendModes.ADD)
-      .setAlpha(0)
-      .setDepth(PROF.projecteur);
+
   }
 
   creerTextes() {
@@ -277,7 +271,6 @@ export default class memory_song extends Phaser.Scene {
   demonstration() {
     this.etat = "demo";
     this.statut("Écoute bien...");
-    this.tweens.add({ targets: this.projecteur, alpha: 1, duration: 300 });
     var duree = Math.max(0.22, 0.5 - 0.025 * (this.sequence.length - LONGUEUR_DEPART)); // en secondes
     var pas = (duree + 0.14) * 1000; // en ms
     this.sequence.forEach((k, rang) => {
@@ -292,7 +285,6 @@ export default class memory_song extends Phaser.Scene {
   aVous() {
     this.etat = "saisie";
     this.statut("À vous de jouer !", OR);
-    this.tweens.add({ targets: this.projecteur, alpha: 0, duration: 300 });
     oublierAppuis(this.touches); // les appuis faits pendant la démo ne comptent pas
     this.joueurs.forEach((j) => {
       if (j.elimine) return;
