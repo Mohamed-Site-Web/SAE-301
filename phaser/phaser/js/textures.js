@@ -15,9 +15,7 @@ export function creerTextures(scene) {
   note(scene);
   rideau(scene);
   // piano_time Time
-  tuile(scene);
   // Memory Song
-  projecteur(scene);
   bulle(scene);
   // Note Catcher
   croche(scene);
@@ -188,45 +186,13 @@ function rideau(scene) {
 // piano_time TIME
 // ---------------------------------------------------------------------------
 
-// la tuile noire qui descend vers la zone dorée
-function tuile(scene) {
-  var g = nouveauDessin(scene);
-  g.fillStyle(0x000000, 0.25);
-  g.fillRoundedRect(3, 5, 86, 54, 10); // ombre
-  g.fillStyle(0x1d1628);
-  g.fillRoundedRect(0, 0, 86, 54, 10); // touche noire
-  g.fillStyle(0x3d3252);
-  g.fillRoundedRect(5, 3, 76, 12, 6); // reflet en haut
-  dessinerCroche(g, 33, 10, 0.3, 0xffd23f); // note dorée au milieu
-  g.generateTexture("tx_tuile", 90, 60);
-  g.destroy();
-}
+
 
 // ---------------------------------------------------------------------------
 // MEMORY SONG
 // ---------------------------------------------------------------------------
 
-// faisceau du projecteur qui éclaire le saxophone pendant qu'il joue
-// (des trapèzes de plus en plus étroits = plus lumineux au centre)
-function projecteur(scene) {
-  var g = nouveauDessin(scene);
-  for (var k = 0; k < 6; k++) {
-    var haut = 50 - k * 7;
-    var bas = 360 - k * 50;
-    g.fillStyle(0xfff3c4, 0.05);
-    g.fillPoints(
-      [
-        { x: 360 - haut, y: 0 },
-        { x: 360 + haut, y: 0 },
-        { x: 360 + bas, y: 560 },
-        { x: 360 - bas, y: 560 }
-      ],
-      true
-    );
-  }
-  g.generateTexture("tx_projecteur", 720, 560);
-  g.destroy();
-}
+
 
 // bulle ronde (on écrit la lettre du bouton dedans)
 function bulle(scene) {
