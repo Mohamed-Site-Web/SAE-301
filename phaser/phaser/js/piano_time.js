@@ -385,10 +385,13 @@ export default class piano_time extends Phaser.Scene {
   }
 
   creerTuile(j, note) {
-    var tuile = this.add.image(this.xCouloir(j, note.couloir), Y_HAUT, "img_touche_note")
-  .setDisplaySize(90, 60)
-  .setDepth(PROF.tuile);
-}
+    var tuile = this.add
+      .image(this.xCouloir(j, note.couloir), Y_HAUT, "img_touche_note")
+      .setDisplaySize(90, 60)
+      .setDepth(PROF.tuile);
+    tuile.note = note; 
+    j.tuiles.push(tuile); 
+  }
 
 
    // Supprime une tuile : on la retire de la liste du joueur et on la détruit à l'écran
