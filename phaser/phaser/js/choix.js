@@ -1,3 +1,7 @@
+
+
+////////////////////////////////CHOIX DES PERSO A CHANGER/////////////////////////////
+
 import { creerTouches, vientDAppuyer } from "./controles.js";
 import { jouerSon, jouerMotif, lancerMusique } from "./sons.js";
 import { PERSOS } from "./persos.js";

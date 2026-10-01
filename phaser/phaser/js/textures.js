@@ -11,9 +11,7 @@ export function creerTextures(scene) {
   miniNote(scene);
   halo(scene);
   // Music Fall
-  bureau(scene);
   page(scene);
-  feuille(scene);
   note(scene);
   rideau(scene);
   // piano_time Time
@@ -126,20 +124,7 @@ function halo(scene) {
 // MUSIC FALL
 // ---------------------------------------------------------------------------
 
-// le bureau en bois sur lequel est posée la partition
-function bureau(scene) {
-  var g = nouveauDessin(scene);
-  g.fillStyle(0x6b4127);
-  g.fillRect(0, 0, 1280, 720);
-  // veines du bois : des bandes plus claires / plus foncées au hasard
-  for (var i = 0; i < 70; i++) {
-    var y = Phaser.Math.Between(0, 720);
-    g.fillStyle(Phaser.Math.RND.pick([0x5a3520, 0x7a4c2f, 0x80533a, 0x633b23]), 0.7);
-    g.fillRect(0, y, 1280, Phaser.Math.Between(2, 9));
-  }
-  g.generateTexture("tx_bureau", 1280, 720);
-  g.destroy();
-}
+
 
 // la grande fiche de partition vierge (900 x 700)
 function page(scene) {
@@ -164,33 +149,6 @@ function page(scene) {
   g.destroy();
 }
 
-// la petite feuille de brouillon d'où le perso saute (200 x 40)
-function feuille(scene) {
-  var g = nouveauDessin(scene);
-  g.fillStyle(0x000000, 0.2);
-  g.fillRect(5, 6, 194, 26);
-  // bord du bas déchiré (zigzag)
-  var points = [
-    { x: 0, y: 0 },
-    { x: 194, y: 0 },
-    { x: 194, y: 24 }
-  ];
-  for (var x = 194; x > 0; x -= 12) {
-    points.push({ x: x, y: 24 });
-    points.push({ x: Math.max(0, x - 6), y: 31 });
-  }
-  points.push({ x: 0, y: 24 });
-  g.fillStyle(0xffffff);
-  g.fillPoints(points, true);
-  // lignes bleues et marge rouge comme un cahier
-  g.lineStyle(1, 0x9ec5e8);
-  g.lineBetween(0, 8, 194, 8);
-  g.lineBetween(0, 17, 194, 17);
-  g.lineStyle(1, 0xe08080);
-  g.lineBetween(22, 0, 22, 28);
-  g.generateTexture("tx_feuille", 200, 40);
-  g.destroy();
-}
 
 // la grande croche qui tombe avec le perso (64 x 128)
 function note(scene) {
