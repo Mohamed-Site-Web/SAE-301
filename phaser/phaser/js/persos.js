@@ -2,7 +2,6 @@
 //   texture : l'image du perso        tete : sa tete, affichée à coté du score
 //   echelle : taille quand on l'affiche en grand (écran des résultats)
 //   couleur : couleur de son texte     teinte : couleur de ses effets
-//   defaite : sa réaction quand il perd (voir interface.js)
 
 // Les 4 persos du document "Idées" (des archétypes d'opéra), pour piano_time_time Time,
 // Memory Song et Note Catcher. "motif" = son petit air quand on le choisit.
@@ -18,7 +17,6 @@ export const PERSOS = [
     couleur: "#9dbbff",
     teinte: 0x4f73e8,
     motif: [77, 81, 84, 89, 84, 89],
-    defaite: "evanouie"
   },
   {
     cle: "figaro",
@@ -31,7 +29,6 @@ export const PERSOS = [
     couleur: "#7ee0b8",
     teinte: 0x2aa37c,
     motif: [67, 67, 67, 72, 67, 72, 76],
-    defaite: "boude"
   },
   {
     cle: "carmen",
@@ -44,7 +41,6 @@ export const PERSOS = [
     couleur: "#ff8080",
     teinte: 0xd8324a,
     motif: [74, 73, 72, 71, 70, 69],
-    defaite: "colere"
   },
   {
     cle: "maestro",
@@ -57,7 +53,6 @@ export const PERSOS = [
     couleur: "#c9a2ff",
     teinte: 0x7d4bc9,
     motif: [81, 79, 81, 79, 77, 76, 74, 73, 74],
-    defaite: "fantome"
   }
 ];
 
@@ -78,7 +73,6 @@ const RENARDS = [
     piedmusic_fall: 29 / 32, // 3 lignes vides sous l'image de music_fall
     couleur: "#ff9a3c",
     teinte: 0xd9622b, // c'est aussi la couleur du tampon de sa note
-    defaite: "boude"
   },
   {
     cle: "renard2",
@@ -92,7 +86,6 @@ const RENARDS = [
     piedmusic_fall: 29 / 32,
     couleur: "#5fc8ff",
     teinte: 0x2b7fd9,
-    defaite: "boude"
   }
 ];
 

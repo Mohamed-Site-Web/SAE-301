@@ -6,7 +6,6 @@
 export function creerTextures(scene) {
   // communes
   etoile(scene);
-  couronne(scene);
   etincelle(scene);
   vie(scene);
   miniNote(scene);
@@ -86,27 +85,6 @@ function etoile(scene) {
   g.destroy();
 }
 
-// couronne du gagnant
-function couronne(scene) {
-  var g = nouveauDessin(scene);
-  g.fillStyle(0xffc83d);
-  g.fillPoints(
-    [
-      { x: 2, y: 34 },
-      { x: 2, y: 8 },
-      { x: 14, y: 20 },
-      { x: 24, y: 2 },
-      { x: 34, y: 20 },
-      { x: 46, y: 8 },
-      { x: 46, y: 34 }
-    ],
-    true
-  );
-  g.fillStyle(0xe0463c);
-  g.fillCircle(24, 26, 4);
-  g.generateTexture("tx_couronne", 48, 36);
-  g.destroy();
-}
 
 // étincelle blanche (on la colorie avec setTint)
 function etincelle(scene) {

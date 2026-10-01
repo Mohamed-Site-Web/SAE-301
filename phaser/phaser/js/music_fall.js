@@ -536,8 +536,6 @@ export default class music_fall extends Phaser.Scene {
       if (gagnants.length == 1) {
         var gagnant = gagnants[0];
         message = gagnant.perso.nom + " remporte l'essai !";
-        var couronne = this.add.image(gagnant.x, 140, "tx_couronne").setDepth(PROFONDEUR.texte).setScale(1.5);
-        this.tweens.add({ targets: couronne, y: 130, duration: 400, yoyo: true, repeat: -1, ease: "Sine.easeInOut" });
       } else {
         message = "Égalité !";
       }
