@@ -562,8 +562,6 @@ fermerPanneau() {
         this.scene.restart({ numEssai: this.numEssai + 1, scores: this.scores });
       } else {
         // écran des résultats : le total de chacun + le détail des essais
-       this.sys.settings.data = {};
-        // écran des résultats : le total de chacun + le détail des essais
         this.scene.start("resultats", {
           scores: this.joueurs.map((joueur) => this.total(joueur.i)),
           stats: ESSAIS.map((essai, k) => ({

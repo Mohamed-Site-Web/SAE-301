@@ -12,7 +12,7 @@ import music_fall from "./js/music_fall.js"; // mini-jeu Music Fall
 import piano_time from "./js/piano_time.js"; // mini-jeu piano_time Time
 import memory_song from "./js/memory_song.js"; // mini-jeu Memory Song
 import note_catcher from "./js/note_catcher.js"; // mini-jeu Note Catcher
-import resultats from "./js/resultats.js"; // scores, gagnant et records
+import resultats from "./js/resultats.js"; // scores et gagnant 
 
 // configuration générale du jeu
 var config = {

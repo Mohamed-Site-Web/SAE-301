@@ -3,7 +3,6 @@ import { jouerSon, jouerpiano_time, lancerMusique, volumeMusique } from "./sons.
 import { participants } from "./persos.js";
 import { infosJeu } from "./jeux.js";
 import { choisirMorceau } from "./repertoire.js";
-import { afficherRecordEnJeu } from "./records.js";
 import { style, styleTexte, panneauPresentation, fermerPanneau, creerMedaillon, creerVies, casserVie, texteFlottant, annonce, partieTerminee, OR } from "./interface.js";
 
 ////////////////////////////////// Réglages du mini-jeu ///////////////////////////////////////////////
@@ -133,8 +132,6 @@ export default class piano_time extends Phaser.Scene {
     this.add.text(235, 180, JEU.titre, style(40, OR, 8)).setOrigin(0.5);
     this.add.text(235, 240, "♪ " + this.morceau.titre, styleTexte(20)).setOrigin(0.5);
     this.add.text(235, 268, this.morceau.auteur, STYLE_AUTEUR).setOrigin(0.5);
-    this.add.rectangle(1045, 215, 260, 150, 0x1b1030, 0.8).setStrokeStyle(2, 0xe0a818);
-    this.record = afficherRecordEnJeu(this, 1045, 170, JEU.cleRecords);
   }
 
   // en duo : le titre et le morceau au milieu, entre les 2 pianos
@@ -292,7 +289,6 @@ export default class piano_time extends Phaser.Scene {
 // Met à jour le score 
   majHUD(j) {
     j.texteScore.setText(j.score);
-    if (this.solo) this.record.verifier(j.score); // (SOLO : verifie si c'est un new record)
     var multi = this.multiplicateur(j);
     j.texteMulti.setText(multi > 1 ? "x" + multi : ""); // empeche l'affichage de X1
     j.texteCombo.setText(j.combo > 1 ? j.combo + " combos" : "");

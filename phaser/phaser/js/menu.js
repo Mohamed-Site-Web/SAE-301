@@ -1,7 +1,6 @@
 import { creerTouches, unJoueurAppuie } from "./controles.js";
 import { jouerSon, lancerMusique } from "./sons.js";
 import { infosJeu } from "./jeux.js";
-import { meilleurRecord } from "./records.js";
 import { style, styleTexte, fondAssombri, aideBas, OR } from "./interface.js";
 
 // Menu du mini-jeu choisi : SOLO (pour battre les meilleurs scores) ou DUO
@@ -72,9 +71,7 @@ export default class menu extends Phaser.Scene {
     this.surligne.y = this.textesChoix[this.choix].y;
     this.textesChoix.forEach((t, i) => t.setScale(i == this.choix ? 1.08 : 1));
     // en solo : le meilleur score à battre
-    var record = meilleurRecord(this.jeu.cleRecords);
     if (this.choix == 1) this.texteInfo.setText("À deux sur la borne : le meilleur score gagne !");
-    else if (record == null) this.texteInfo.setText("Pas encore de record : à toi de jouer !");
-    else this.texteInfo.setText("Record à battre : " + record.score + " " + this.jeu.unite + " (" + record.initiales + ")");
+    else this.texteInfo.setText("");
   }
 }

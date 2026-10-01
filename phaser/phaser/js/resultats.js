@@ -2,7 +2,6 @@ import { creerTouches, unJoueurAppuie, oublierAppuis } from "./controles.js";
 import { jouerSon, lancerMusique } from "./sons.js";
 import { participants } from "./persos.js";
 import { infosJeu } from "./jeux.js";
-import { TableauRecords, placeDansRecords } from "./records.js";
 import {
   style,
   styleTexte,
@@ -59,30 +58,22 @@ export default class resultats extends Phaser.Scene {
   // //////////////////////////////////SOLO TOP SCOREE ///////////////////////////////////////////////////////
   
   creerSolo(j) {
-    var place = placeDansRecords(this.jeu.cleRecords, this.scores[0], this.jeu.croissant);
-    var message = place == 0 ? "NOUVEAU RECORD !" : place > 0 ? "Tu entres dans le top 5 !" : "Fin de la partie";
-    this.add.text(640, 60, message, style(52, OR, 10)).setOrigin(0.5);
+    this.add.text(640, 60, "Fin de la partie", style(52, OR, 10)).setOrigin(0.5);
 
-    // le perso : il fête ça s'il entre dans le tableau
     var sprite = this.afficherPerso(j, 170);
-    
+    respirer(this, sprite);
+
     // le score et les stats de la partie
     var hauteur = 230 + this.stats.length * 38;
-    this.add.rectangle(500, 150 + hauteur / 2, 380, hauteur, 0x1b1030, 0.9).setStrokeStyle(3, 0xe0a818);
-    creerMedaillon(this, 500, 205, j, j.etiquette);
-    this.add.text(500, 270, j.nom, style(22, j.couleur, 5)).setOrigin(0.5);
-    this.add.text(500, 318, this.score(0), style(40, OR)).setOrigin(0.5);
+    this.add.rectangle(640, 150 + hauteur / 2, 380, hauteur, 0x1b1030, 0.9).setStrokeStyle(3, 0xe0a818);
+    creerMedaillon(this, 640, 205, j, j.etiquette);
+    this.add.text(640, 270, j.nom, style(22, j.couleur, 5)).setOrigin(0.5);
+    this.add.text(640, 318, this.score(0), style(40, OR)).setOrigin(0.5);
     this.stats.forEach((stat, k) => {
       var y = 372 + k * 38;
-      this.add.text(330, y, stat.titre, styleTexte(18, "#b8a8d8")).setOrigin(0, 0.5);
-      this.add.text(670, y, String(stat.valeurs[0]), styleTexte(22)).setOrigin(1, 0.5);
+      this.add.text(470, y, stat.titre, styleTexte(18, "#b8a8d8")).setOrigin(0, 0.5);
+      this.add.text(810, y, String(stat.valeurs[0]), styleTexte(22)).setOrigin(1, 0.5);
     });
-
-    // le tableau des 5 meilleurs scores
-    this.add.rectangle(960, 350, 420, 420, 0x1b1030, 0.9).setStrokeStyle(3, 0xe0a818);
-    this.tableau = new TableauRecords(this, this.jeu, this.scores[0], j.cle, 960, 160);
-    this.enSaisie = this.tableau.enSaisie;
-    if (this.enSaisie) this.aide.setText("Entre tes initiales pour le tableau des records !");
   }
 
   // ---------------------------------------------------------------------------
@@ -120,15 +111,6 @@ export default class resultats extends Phaser.Scene {
 
   update() {
     if (this.choixFait) return;
-    // en solo, on tape d'abord ses initiales
-    if (this.enSaisie) {
-      this.enSaisie = this.tableau.mettreAJour(this.touches);
-      if (!this.enSaisie) {
-        oublierAppuis(this.touches);
-        this.aide.setText("A : rejouer      B : menu");
-      }
-      return;
-    }
     if (unJoueurAppuie(this.touches, "a")) {
       this.choixFait = true;
       jouerSon(this, "valider");

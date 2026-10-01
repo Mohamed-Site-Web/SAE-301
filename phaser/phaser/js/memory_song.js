@@ -2,7 +2,6 @@ import { creerTouches, vientDAppuyer, unJoueurAppuie, oublierAppuis, BOUTONS, LE
 import { jouerSon, jouerSaxo, lancerMusique, volumeMusique } from "./sons.js";
 import { participants } from "./persos.js";
 import { infosJeu } from "./jeux.js";
-import { afficherRecordEnJeu } from "./records.js";
 import {
   style,
   styleTexte,
@@ -17,7 +16,7 @@ import {
   OR
 } from "./interface.js";
 
-const JEU = infosJeu("memory_song"); // titre, fond, tableau des records...
+const JEU = infosJeu("memory_song"); // titre, fond...
 
 // ---------------------------------------------------------------------------
 // Réglages du mini-jeu
@@ -75,11 +74,6 @@ export default class memory_song extends Phaser.Scene {
     this.add.image(0, 0, JEU.fond).setOrigin(0);
     this.creerSaxo();
     this.creerTextes();
-    // en solo : le record à battre dans le coin en haut à droite
-    if (this.solo) {
-      this.add.rectangle(1150, 70, 210, 116, 0x1b1030, 0.8).setStrokeStyle(2, 0xe0a818).setDepth(PROF.hud);
-      this.record = afficherRecordEnJeu(this, 1150, 34, JEU.cleRecords);
-    }
     this.joueurs = participants(this.registry).map((perso, i) => this.creerJoueur(perso, i));
 
     lancerMusique(this);
@@ -196,7 +190,6 @@ export default class memory_song extends Phaser.Scene {
   majScore(j) {
     j.texteScore.setText(j.score);
     this.tweens.add({ targets: j.texteScore, scale: 1.25, duration: 90, yoyo: true });
-    if (this.solo) this.record.verifier(j.score);
   }
 
   // une rangée de ronds : plein = note déjà rejouée

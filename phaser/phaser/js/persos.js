@@ -10,7 +10,7 @@ export const PERSOS = [
     cle: "diva",
     nom: "La Diva",
     titre: "La Diva dramatique",
-    description: "Reine de la Nuit.\nSa voix brise les verres...\net les records.",
+    description: "Reine de la Nuit.\nSa voix brise les verres...",
     texture: "img_diva",
     tete: "img_tete_diva",
     echelle: 1.1,

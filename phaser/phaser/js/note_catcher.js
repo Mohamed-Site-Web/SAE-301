@@ -3,7 +3,6 @@ import { jouerSon, jouerCelesta, lancerMusique, volumeMusique } from "./sons.js"
 import { participants } from "./persos.js";
 import { infosJeu } from "./jeux.js";
 import { choisirMorceau } from "./repertoire.js";
-import { afficherRecordEnJeu } from "./records.js";
 import {
   style,
   panneauPresentation,
@@ -14,7 +13,7 @@ import {
   OR
 } from "./interface.js";
 
-const JEU = infosJeu("note_catcher"); // titre, fond, tableau des records...
+const JEU = infosJeu("note_catcher"); // titre, fond...
 
 // ---------------------------------------------------------------------------
 // Réglages du mini-jeu
@@ -75,11 +74,6 @@ export default class note_catcher extends Phaser.Scene {
 
     this.add.image(0, 0, JEU.fond).setOrigin(0);
     this.creerCentre();
-    // en solo : le record à battre dans le coin en haut à droite
-    if (this.solo) {
-      this.add.rectangle(1150, 70, 210, 116, 0x1b1030, 0.8).setStrokeStyle(2, 0xe0a818).setDepth(PROF.hud);
-      this.record = afficherRecordEnJeu(this, 1150, 34, JEU.cleRecords);
-    }
     this.joueurs = participants(this.registry).map((perso, i) => this.creerJoueur(perso, i));
 
     lancerMusique(this);
@@ -185,7 +179,6 @@ export default class note_catcher extends Phaser.Scene {
 
   majHUD(j) {
     j.texteScore.setText(j.score);
-    if (this.solo) this.record.verifier(j.score);
     var multi = this.multiplicateur(j);
     var texte = "";
     if (j.combo > 1) texte = j.combo + " combos";

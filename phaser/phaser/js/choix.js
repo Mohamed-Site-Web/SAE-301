@@ -32,7 +32,7 @@ export default class choix extends Phaser.Scene {
 
     fondAssombri(this, this.jeu.fond, 0.62);
     this.add.text(640, 52, "CHOISIS TON PERSONNAGE", style(46, OR, 10)).setOrigin(0.5);
-    var sousTitre = this.duo ? "J1 et J2 choisissent en même temps" : "Avec qui vas-tu battre le record ?";
+    var sousTitre = this.duo ? "J1 et J2 choisissent en même temps" : "Avec qui vas-tu jouer ?";
     this.add.text(640, 102, sousTitre, styleTexte(22, "#ffe9a8")).setOrigin(0.5);
     this.cartes = PERSOS.map((perso, i) => this.creerCarte(perso, i));
 

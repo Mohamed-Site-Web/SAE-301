@@ -60,10 +60,10 @@ export function unJoueurAppuie(touches, action) {
   return j1 || j2;
 }
 
-// on "vide" les appuis en attente des 2 joueurs (sinon un appui fait pendant
-// une animation serait pris en compte juste après)
+// on "vide" les appuis en attente des 2 joueurs (sinon un appui fait pendant une animation serait pris en compte juste après)
 export function oublierAppuis(touches) {
   touches.forEach((joueur) => {
     Object.keys(joueur).forEach((action) => vientDAppuyer(joueur[action]));
   });
 }
+
