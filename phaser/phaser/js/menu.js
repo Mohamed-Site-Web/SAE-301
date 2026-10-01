@@ -39,12 +39,7 @@ export default class menu extends Phaser.Scene {
     this.add.text(640, 562, this.jeu.regles, { ...styleTexte(20), lineSpacing: 8 }).setOrigin(0.5);
     aideBas(this, "Joystick : choisir     A : valider     B : autres jeux");
 
-    // les persos du jeu sur les cotés (ceux de droite regardent vers le milieu)
-    this.jeu.decor.forEach((d) => {
-      var sprite = this.add.sprite(d.x, 700, d.texture).setOrigin(0.5, 1).setScale(d.echelle).setFlipX(d.x > 640);
-      if (d.anim) sprite.play(d.anim);
-      else respirer(this, sprite);
-    });
+
 
     this.majMenu();
     lancerMusique(this);

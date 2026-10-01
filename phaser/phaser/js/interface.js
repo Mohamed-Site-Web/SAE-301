@@ -171,40 +171,8 @@ export function respirer(scene, sprite) {
   });
 }
 
-// le gagnant saute de joie avec une couronne
-export function celebrer(scene, sprite) {
-  scene.tweens.add({ targets: sprite, y: sprite.y - 45, duration: 300, yoyo: true, repeat: -1, ease: "Quad.easeOut" });
-  var couronne = scene.add
-    .image(sprite.x, sprite.y - sprite.displayHeight - 28, "tx_couronne")
-    .setScale(1.6)
-    .setDepth(sprite.depth + 1);
-  scene.tweens.add({ targets: couronne, y: couronne.y - 45, duration: 300, yoyo: true, repeat: -1, ease: "Quad.easeOut" });
-  return couronne;
-}
 
-// chaque perso a sa façon de perdre (voir "defaite" dans persos.js)
-export function reagirDefaite(scene, sprite, perso) {
-  if (perso.defaite == "colere") {
-    // Carmen, mauvaise perdante : elle trépigne de rage
-    sprite.setTint(0xffa0a0);
-    scene.tweens.add({ targets: sprite, x: sprite.x + 6, duration: 45, yoyo: true, repeat: 5, loop: -1, loopDelay: 600 });
-    var colere = scene.add.text(sprite.x + 40, sprite.y - sprite.displayHeight, "#@!", style(30, "#ff4d5e")).setDepth(sprite.depth + 1);
-    scene.tweens.add({ targets: colere, y: colere.y - 12, duration: 300, yoyo: true, repeat: -1 });
-  } else if (perso.defaite == "evanouie") {
-    // la Diva, dramatique : elle s'évanouit (elle tombe vers le milieu de l'écran)
-    sprite.setTint(0xb0b0c8);
-    scene.tweens.add({ targets: sprite, angle: sprite.x < 640 ? 82 : -82, duration: 900, ease: "Bounce.easeOut" });
-  } else if (perso.defaite == "boude") {
-    // Figaro tourne le dos et boude
-    sprite.setTint(0xa8a8b8);
-    sprite.setFlipX(!sprite.flipX);
-    scene.tweens.add({ targets: sprite, scaleY: sprite.scaleY * 0.9, duration: 500, yoyo: true, repeat: -1, hold: 700 });
-  } else {
-    // le Maestro disparait dans l'ombre... comme un fantome
-    scene.tweens.add({ targets: sprite, alpha: 0.25, duration: 1400 });
-    scene.tweens.add({ targets: sprite, y: sprite.y - 14, duration: 1600, yoyo: true, repeat: -1, ease: "Sine.easeInOut" });
-  }
-}
+
 
 // ---------------------------------------------------------------------------
 // Fin de partie (le plus GRAND score gagne dans ces mini-jeux)

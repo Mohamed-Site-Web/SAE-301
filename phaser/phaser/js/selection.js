@@ -1,3 +1,11 @@
+
+
+
+/////////////////////////////////PAGE DE SELECTION DES JEUXX a effacer//////////////////////////
+
+
+
+
 import { creerTouches, unJoueurAppuie } from "./controles.js";
 import { jouerSon, lancerMusique } from "./sons.js";
 import { JEUX } from "./jeux.js";

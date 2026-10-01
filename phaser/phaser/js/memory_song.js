@@ -14,7 +14,6 @@ import {
   texteFlottant,
   annonce,
   respirer,
-  reagirDefaite,
   partieTerminee,
   OR
 } from "./interface.js";
@@ -392,7 +391,6 @@ export default class memory_song extends Phaser.Scene {
     j.progres.clear();
     this.tweens.killTweensOf(j.sprite);
     j.sprite.setScale(0.85).setX(j.x);
-    reagirDefaite(this, j.sprite, j.perso);
     var tampon = this.add
       .text(j.x, Y_PROGRES, this.solo ? "TERMINÉ" : "ÉLIMINÉ", style(34, "#ff4d5e", 7))
       .setOrigin(0.5)

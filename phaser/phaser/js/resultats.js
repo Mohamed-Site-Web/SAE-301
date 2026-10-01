@@ -9,8 +9,6 @@ import {
   fondAssombri,
   aideBas,
   creerMedaillon,
-  celebrer,
-  reagirDefaite,
   respirer,
   OR
 } from "./interface.js";
@@ -59,9 +57,8 @@ export default class resultats extends Phaser.Scene {
     return this.scores[i] + " " + this.jeu.unite;
   }
 
-  // ---------------------------------------------------------------------------
-  // SOLO : score + tableau des meilleurs scores
-  // ---------------------------------------------------------------------------
+  // //////////////////////////////////SOLO TOP SCOREE ///////////////////////////////////////////////////////
+  
   creerSolo(j) {
     var place = placeDansRecords(this.jeu.cleRecords, this.scores[0], this.jeu.croissant);
     var message = place == 0 ? "NOUVEAU RECORD !" : place > 0 ? "Tu entres dans le top 5 !" : "Fin de la partie";
@@ -69,8 +66,7 @@ export default class resultats extends Phaser.Scene {
 
     // le perso : il fête ça s'il entre dans le tableau
     var sprite = this.afficherPerso(j, 170);
-    if (place >= 0) celebrer(this, sprite);
-    else respirer(this, sprite);
+    respirer(this, sprite);
 
     // le score et les stats de la partie
     var hauteur = 230 + this.stats.length * 38;
@@ -120,9 +116,7 @@ export default class resultats extends Phaser.Scene {
 
     // les persos : le gagnant saute de joie, le perdant réagit à sa façon
     joueurs.forEach((j, i) => {
-      var sprite = this.afficherPerso(j, i == 0 ? 170 : 1110);
-      if (i == gagnant || gagnant == -1) celebrer(this, sprite);
-      else reagirDefaite(this, sprite, j);
+      this.afficherPerso(j, i == 0 ? 170 : 1110);
     });
   }
 
