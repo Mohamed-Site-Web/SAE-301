@@ -18,8 +18,6 @@ export default class menu extends Phaser.Scene {
     this.lancement = false;
 
     fondAssombri(this, this.jeu.fond, 0.55);
-    var logo = this.add.image(125, 92, "img_logo").setScale(0.8);
-    this.tweens.add({ targets: logo, y: 100, duration: 1200, yoyo: true, repeat: -1, ease: "Sine.easeInOut" });
     var titre = this.add.text(640, 105, this.jeu.titre, style(80, OR, 12)).setOrigin(0.5);
     this.tweens.add({ targets: titre, angle: 1.5, duration: 900, yoyo: true, repeat: -1, ease: "Sine.easeInOut" });
     this.add

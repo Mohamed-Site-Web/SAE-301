@@ -133,7 +133,6 @@ export default class piano_time extends Phaser.Scene {
     this.add.text(235, 180, JEU.titre, style(40, OR, 8)).setOrigin(0.5);
     this.add.text(235, 240, "♪ " + this.morceau.titre, styleTexte(20)).setOrigin(0.5);
     this.add.text(235, 268, this.morceau.auteur, STYLE_AUTEUR).setOrigin(0.5);
-    this.add.image(235, 580, "img_logo").setScale(0.75);
     this.add.rectangle(1045, 215, 260, 150, 0x1b1030, 0.8).setStrokeStyle(2, 0xe0a818);
     this.record = afficherRecordEnJeu(this, 1045, 170, JEU.cleRecords);
   }
@@ -143,7 +142,6 @@ export default class piano_time extends Phaser.Scene {
     this.add.text(640, 46, JEU.titre, style(40, OR, 8)).setOrigin(0.5).setDepth(PROF.hud);
     this.add.text(640, 96, "♪ " + this.morceau.titre, styleTexte(20)).setOrigin(0.5).setDepth(PROF.hud);
     this.add.text(640, 122, this.morceau.auteur, STYLE_AUTEUR).setOrigin(0.5).setDepth(PROF.hud);
-    this.add.image(640, 640, "img_logo").setScale(0.62).setDepth(PROF.hud);
   }
 
 
