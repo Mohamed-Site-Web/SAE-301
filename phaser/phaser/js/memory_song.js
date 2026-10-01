@@ -13,7 +13,6 @@ import {
   casserVie,
   texteFlottant,
   annonce,
-  respirer,
   partieTerminee,
   OR
 } from "./interface.js";
@@ -184,7 +183,6 @@ export default class memory_song extends Phaser.Scene {
       .setScale(0.85)
       .setFlipX(i == 1)
       .setDepth(PROF.perso);
-    respirer(this, j.sprite);
 
     // HUD en haut dans le coin : la tete, le score à coté et les chances
     var gauche = i == 0;

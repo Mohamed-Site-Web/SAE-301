@@ -2,7 +2,7 @@ import { creerTouches, unJoueurAppuie } from "./controles.js";
 import { jouerSon, lancerMusique } from "./sons.js";
 import { infosJeu } from "./jeux.js";
 import { meilleurRecord } from "./records.js";
-import { style, styleTexte, fondAssombri, aideBas, respirer, OR } from "./interface.js";
+import { style, styleTexte, fondAssombri, aideBas, OR } from "./interface.js";
 
 // Menu du mini-jeu choisi : SOLO (pour battre les meilleurs scores) ou DUO
 // (J1 contre J2). Tout se fait au joystick + bouton A : pas de souris sur la borne.

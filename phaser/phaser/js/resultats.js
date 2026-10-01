@@ -9,7 +9,6 @@ import {
   fondAssombri,
   aideBas,
   creerMedaillon,
-  respirer,
   OR
 } from "./interface.js";
 
@@ -66,8 +65,7 @@ export default class resultats extends Phaser.Scene {
 
     // le perso : il fête ça s'il entre dans le tableau
     var sprite = this.afficherPerso(j, 170);
-    respirer(this, sprite);
-
+    
     // le score et les stats de la partie
     var hauteur = 230 + this.stats.length * 38;
     this.add.rectangle(500, 150 + hauteur / 2, 380, hauteur, 0x1b1030, 0.9).setStrokeStyle(3, 0xe0a818);

@@ -147,22 +147,6 @@ export function annonce(scene, texte, couleur, duree, y) {
   return t;
 }
 
-// ---------------------------------------------------------------------------
-// Les persos sont des images fixes : on les anime avec des tweens
-// (origine en bas au milieu, donc les pieds restent au sol)
-// ---------------------------------------------------------------------------
-export function respirer(scene, sprite) {
-  var base = sprite.scaleY;
-  scene.tweens.add({
-    targets: sprite,
-    scaleY: base * 1.025,
-    duration: Phaser.Math.Between(800, 1100),
-    yoyo: true,
-    repeat: -1,
-    ease: "Sine.easeInOut"
-  });
-}
-
 
 
 

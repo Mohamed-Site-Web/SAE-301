@@ -10,7 +10,7 @@ import { creerTouches, unJoueurAppuie } from "./controles.js";
 import { jouerSon, lancerMusique } from "./sons.js";
 import { JEUX } from "./jeux.js";
 import { meilleurRecord } from "./records.js";
-import { style, styleTexte, fondAssombri, aideBas, respirer, OR } from "./interface.js";
+import { style, styleTexte, fondAssombri, aideBas, OR } from "./interface.js";
 
 const X_CARTES = [205, 495, 785, 1075];
 const Y_CARTE = 370;
@@ -47,7 +47,6 @@ export default class selection extends Phaser.Scene {
     this.add.rectangle(x, Y_CARTE, LARGEUR_CARTE, HAUTEUR_CARTE, 0x1b1030, 0.88).setStrokeStyle(3, 0xe0a818);
     // (pour une spritesheet, Phaser affiche automatiquement la 1re image)
     var image = this.add.image(x, Y_CARTE + 20, jeu.image).setOrigin(0.5, 1).setScale(jeu.echelleImage);
-    respirer(this, image);
     this.add.text(x, Y_CARTE + 55, jeu.titre, style(26, OR, 6)).setOrigin(0.5);
     this.add.text(x, Y_CARTE + 85, jeu.description, styleTexte(18, "#d8d0e8")).setOrigin(0.5, 0);
     // le record du mode solo

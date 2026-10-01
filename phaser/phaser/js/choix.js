@@ -6,7 +6,7 @@ import { creerTouches, vientDAppuyer } from "./controles.js";
 import { jouerSon, jouerMotif, lancerMusique } from "./sons.js";
 import { PERSOS } from "./persos.js";
 import { infosJeu } from "./jeux.js";
-import { style, styleTexte, fondAssombri, aideBas, annonce, texteFlottant, respirer, POLICE, OR } from "./interface.js";
+import { style, styleTexte, fondAssombri, aideBas, annonce, texteFlottant, POLICE, OR } from "./interface.js";
 
 // Réglages de l'écran
 const X_CARTES = [205, 495, 785, 1075];
@@ -55,7 +55,6 @@ export default class choix extends Phaser.Scene {
     // un halo de la couleur du perso derrière lui (le Maestro est très sombre)
     this.add.image(x, Y_CARTE - 40, "tx_halo").setScale(2.2).setTint(perso.teinte).setAlpha(0.8);
     var sprite = this.add.image(x, Y_CARTE + 70, perso.texture).setOrigin(0.5, 1).setScale(0.82);
-    respirer(this, sprite);
     this.add.text(x, Y_CARTE + 100, perso.nom.toUpperCase(), style(26, perso.couleur, 6)).setOrigin(0.5);
     this.add
       .text(x, Y_CARTE + 130, perso.titre, { fontFamily: "Georgia, serif", fontSize: "18px", fontStyle: "italic", color: "#ffe9a8" })
