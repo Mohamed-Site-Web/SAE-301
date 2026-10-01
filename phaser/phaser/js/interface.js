@@ -65,7 +65,6 @@ export function panneauPresentation(scene, titre, lignes) {
   var texteBouton = scene.add
     .text(0, bouton.y, "▶  LANCER LE JEU  (A)", { fontFamily: POLICE, fontSize: "24px", color: "#2b1f5c" })
     .setOrigin(0.5);
-  scene.tweens.add({ targets: [bouton, texteBouton], scale: 1.06, duration: 450, yoyo: true, repeat: -1 });
 
   var panneau = scene.add.container(640, 360, [fond, texteTitre, texte, bouton, texteBouton]).setDepth(80).setScale(0);
   scene.tweens.add({ targets: panneau, scale: 1, duration: 400, ease: "Back.easeOut" });

@@ -1,5 +1,8 @@
+// importe les fonctions des touches (créer les touches, détecter un appui de J1 ou J2)
 import { creerTouches, vientDAppuyer, unJoueurAppuie } from "./controles.js";
+// importe les fonctions des sons (bruitages, tampon, sifflet de chute, musique et son volume)
 import { jouerSon, jouerTampon, sifflet, lancerMusique, volumeMusique } from "./sons.js";
+// importe la liste des joueurs de la partie (J1 seul en solo, J1 et J2 en duo)
 import { participants } from "./persos.js";
 
 // ===========================================================================
